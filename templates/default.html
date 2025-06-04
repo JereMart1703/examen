@@ -8,6 +8,8 @@
     {% endblock %}
 </head>
 
+
+<!--------------------MENU--------------------------->
 <div class="topnav">
   {% if menu %}
     {% if menu.home %}
@@ -16,15 +18,17 @@
     {% if menu.add %}
     <a href="{{ url_for('ver_notas') }}">ORDEN ALUMNOS</a>
       <a href="{{ url_for('form_add_alumnos') }}">AÑADIR ALUMNOS</a> 
-      <a href="">ELIMINAR ALUMNOS</a>
+      <a href="{{ url_for('form_del_alumnos') }}">ELIMINAR ALUMNOS</a>
       <a href="">ACTUALIZAR NOTAS</a>
     {% endif %}
   {% endif %}
+
+  <!---------------CONTENIDO-------------------->
 </div>
     <div class="main">
         {% block content %}{% endblock %}
     </div>
-
+<!-----------------FOOTER------------------------------->
     <div class="footer">
         <p>Jeremy Martínez - IMPLANTACIÓN DE APLICACIONES WEB</p>
     </div>

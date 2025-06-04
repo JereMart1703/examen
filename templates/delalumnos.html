@@ -1,0 +1,27 @@
+{% extends "default.html" %}
+
+{% block title %}Eliminar alumnos{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/amarillo.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="col-sm-9">
+    <br>
+    <h1>ALUMNO ELIMINADO CORRECTAMENTE</h1>
+    <br>
+    
+    <h1>Eliminar otro alumno si lo deseas</h1> <br>
+    <form action="{{ url_for('del_alumnos') }}" method="post">
+      <select name="alumno_id" required>
+        {% for alumno in alumnos %}
+          <option value="{{ alumno.id }}">{{ alumno.nombre }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Eliminar">
+    </form>
+
+  </div>
+  <br>
+{% endblock %}

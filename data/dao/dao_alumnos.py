@@ -23,3 +23,14 @@ class DaoAlumnos:
         cursor.execute(sql, data)
         db.commit()
         cursor.close()
+
+
+################### BORRAR ###################################
+
+    def delete(self, db, nombre: str): ############# EL SELF DA ERROR SI SE PONEN MAL LOS ESPACIOS ######################
+        cursor = db.cursor()
+        sql = "DELETE FROM alumnos WHERE id = %s"
+        data = (nombre,)
+        cursor.execute(sql, data)
+        db.commit()
+        cursor.close()

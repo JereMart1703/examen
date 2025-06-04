@@ -81,5 +81,33 @@ def add_alumnos(
     alumnos = dao.get_all(database)
     menu = Menu(True, True)
     return templates.TemplateResponse(
-        request=request, name="formaddalumnos.html", context={"menu": menu, "alumnos": alumnos}
+        request=request, name="addalumnos.html", context={"menu": menu, "alumnos": alumnos}
+    )
+
+
+################## ELIMINAR ALUMNOS ##############################
+
+
+@app.get("/fromdelalumnos")
+def form_del_alumnos(request: Request):
+    menu = Menu(True, True)
+    dao = DaoAlumnos()
+    
+    alumnos = dao.get_all(database)
+    return templates.TemplateResponse(
+        request=request,
+        name="formdelalumnos.html",
+        context={"menu": menu, "alumnos": alumnos}
+    )
+
+@app.post("/delalumnos")
+def del_alumnos(request: Request, alumno_id: Annotated[int, Form()]):
+    dao = DaoAlumnos()
+    dao.delete(database, alumno_id)
+    alumnos = dao.get_all(database)
+    menu = Menu(True, True)
+    return templates.TemplateResponse(
+        request=request,
+        name="delalumnos.html",
+        context={"menu": menu, "alumnos": alumnos}
     )
