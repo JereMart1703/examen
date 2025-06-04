@@ -10,17 +10,19 @@ from fastapi.templating import Jinja2Templates
 from data.modelo.menu import Menu
 from data.dao.dao_alumnos import DaoAlumnos
 from typing import Annotated
+
+
+### SIEMPRE PONER ESTO
 app = FastAPI()
-
 app.mount("/static", StaticFiles(directory="./static"), name="static")
-
-
 templates = Jinja2Templates(directory="templates")
 
+
+### PAGINA PRINCIPAL , MAS QUE NADA PARA PRUEBAS PARA VER SI CONECTA EL FASTAPI
 @app.get("/")
 def read_root(request: Request):
 
-    menu = Menu(True, True)
+    menu = Menu(True, True) ### DEJARLO SIEMPRE EN TRUE POR SI ACASO
 
     alumnos = DaoAlumnos().get_all(database)
 
@@ -124,3 +126,23 @@ def form_update_notas(request: Request):
         name="formupdatenotas.html",
         context={"menu": menu, "alumnos": alumnos}
     )
+
+@app.post("/formupdatenotas")
+def update_notas(
+    request: Request,
+    alumno_id: Annotated[int, Form()],
+    nota1: Annotated[float, Form()],
+    nota2: Annotated[float, Form()],
+    nota3: Annotated[float, Form()]
+):
+    dao = DaoAlumnos()
+    dao.update(database, alumno_id, nota1, nota2, nota3)
+
+    alumnos = dao.get_all(database)
+    menu = Menu(True, True)
+    return templates.TemplateResponse(
+        request=request,
+        name="updatenotas.html",
+        context={"menu": menu, "alumnos": alumnos}
+    )
+   

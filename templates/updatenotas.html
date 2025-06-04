@@ -1,0 +1,28 @@
+{% extends "default.html" %}
+
+{% block title %}Eliminar alumnos{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/amarillo.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="col-sm-9">
+        <h3><small>ALUMNOS</small></h3>
+        <hr>
+        <h1>Actualizar Notas del Alumno</h1> <br>
+        <form action="{{ url_for('update_notas') }}" method="post">
+            <select name="alumno_id" required>
+                {% for alumno in alumnos %}
+                    <option value="{{ alumno.id }}">{{ alumno.nombre }}</option>
+                {% endfor %}
+            </select>
+            <input type="number" name="nota1" placeholder="Nota 1" step="any" required>
+            <input type="number" name="nota2" placeholder="Nota 2" step="any" required>
+            <input type="number" name="nota3" placeholder="Nota 3" step="any" required>
+            <input type="submit" value="Actualizar">
+        </form>
+        <h1>Notas actualizadas correctamente</h1>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from data.modelo.alumnos import alumnos
 
-class DaoAlumnos:
+class DaoAlumnos: # SIRVE PARA EL GET Y EL POST , OSEA QUE SI FUNCIONA EL GET , EL POST FUNCIONA
     def get_all(self, db) -> list[alumnos]:
         cursor = db.cursor()
 
@@ -38,10 +38,12 @@ class DaoAlumnos:
 
 ################# ACTUALIZAR #################################
 
-    def update(self, db, nota1: int, nota2: int, nota3: int):
+    def update(self, db, id: int, nota1: float, nota2: float, nota3: float):  # SIRVE PARA EL GET Y EL POST
         cursor = db.cursor()
         sql = "UPDATE alumnos SET nota1 = %s, nota2 = %s, nota3 = %s WHERE id = %s"
         data = (nota1, nota2,nota3, id)
         cursor.execute(sql, data)
         db.commit()
         cursor.close()
+    
+
