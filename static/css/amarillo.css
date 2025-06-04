@@ -9,18 +9,33 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Título principal arriba */
+.header-title {
+  background-color: #cc9900; /* igual que el menú */
+  color: white;
+  padding: 12px 16px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Menú horizontal mejorado */
 .topnav {
   overflow: hidden;
   background-color: #cc9900;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* espacio entre enlaces */
 }
 
 .topnav a {
-  float: left;
-  display: block;
   color: #fff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  display: block;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .topnav a:hover {
@@ -29,13 +44,15 @@ body {
 }
 
 .content {
-  background-color: #ffffe0;
+  background-color: #ffffe0; /* fondo más claro */
   padding: 10px;
+  min-height: 200px;
 }
 
 .footer {
   background-color: #ffe680;
   padding: 10px;
+  text-align: center;
 }
 
 table {

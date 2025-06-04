@@ -29,7 +29,7 @@ def read_root(request: Request):
     )
 
 
-############### DATABASE O PAGINA PRINCIPAL ###########################
+############### DATABASE O PAGINA PRINCIPAL PARA VER LA TABLA ###########################
 
 @app.get("/database")
 def get_alumnos(request: Request):
@@ -40,6 +40,21 @@ def get_alumnos(request: Request):
 
     return templates.TemplateResponse(
         request=request, name="database.html", context={"menu": menu,"alumnos": alumnos}
+    )
+
+
+############ TABLA CON MEJORES NOTAS ########################
+
+@app.get("/vernotas")
+def ver_notas(request: Request):
+    menu = Menu(True, True)
+    dao = DaoAlumnos()
+    alumnos = dao.get_all(database)
+
+    return templates.TemplateResponse(
+        request=request,
+        name="vernotas.html",
+        context={"menu": menu, "alumnos": alumnos}
     )
 
 ############# AÑADIR ALUMNOS ###########################

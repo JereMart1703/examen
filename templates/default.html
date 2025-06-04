@@ -11,10 +11,10 @@
 <div class="topnav">
   {% if menu %}
     {% if menu.home %}
-      <a href="">VER TABLA ALUMNOS</a>
+      <a href="{{ url_for('get_alumnos') }}">VER TABLA ALUMNOS</a>
     {% endif %}
     {% if menu.add %}
-    <a href="">ORDEN   ALUMNOS</a>
+    <a href="{{ url_for('ver_notas') }}">ORDEN ALUMNOS</a>
       <a href="{{ url_for('form_add_alumnos') }}">AÑADIR ALUMNOS</a> 
       <a href="">ELIMINAR ALUMNOS</a>
       <a href="">ACTUALIZAR NOTAS</a>

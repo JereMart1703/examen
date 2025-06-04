@@ -1,0 +1,28 @@
+{% extends "default.html" %}
+    {% block css%}
+    <link rel="stylesheet" href="{{ url_for('static',path='css/amarillo.css') }}">
+    {% endblock %}
+{% block content %}
+<div class="content">
+  <h2>Notas de los alumnos</h2>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Nota más alta</th>
+      <th>Nota más baja</th>
+      <th>Media</th>
+    </tr>
+    {% for alumno in alumnos %}
+      {% set mejor = [alumno.nota1, alumno.nota2, alumno.nota3] | max %}
+      {% set peor = [alumno.nota1, alumno.nota2, alumno.nota3] | min %}
+      {% set media = ((alumno.nota1 + alumno.nota2 + alumno.nota3) / 3) | round(2) %}
+      <tr>
+        <td>{{ alumno.nombre }}</td>
+        <td>{{ mejor }}</td>
+        <td>{{ peor }}</td>
+        <td>{{ media }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

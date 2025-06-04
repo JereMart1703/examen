@@ -14,7 +14,6 @@ class DaoAlumnos:
         cursor.close()
         return lista_alumnos
 
-    
 ####################### AÑADIR ################################
 
     def insert(self, db, nombre: str, nota1: float, nota2: float, nota3: float):
