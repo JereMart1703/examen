@@ -1,0 +1,30 @@
+{% extends "default.html" %}
+
+{% block content %}
+<div class="content">
+  <h2>TABLA DE ALUMNOS</h2>
+
+  <table>
+    <tr>
+      <th>Alumno</th>
+      <th>Nota 1</th>
+      <th>Nota 2</th>
+      <th>Nota 3</th>
+    </tr>
+    {% if alumnos %}
+      {% for alumno in alumnos %}
+        <tr>
+          <td>{{ alumno.nombre }}</td>
+          <td class="{% if alumno.nota1 < 5 %}nota-baja{% endif %}">{{ alumno.nota1 }}</td>
+          <td class="{% if alumno.nota2 < 5 %}nota-baja{% endif %}">{{ alumno.nota2 }}</td>
+          <td class="{% if alumno.nota3 < 5 %}nota-baja{% endif %}">{{ alumno.nota3 }}</td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="4">No hay alumnos registrados.</td>
+      </tr>
+    {% endif %}
+  </table>
+</div>
+{% endblock %}
