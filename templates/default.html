@@ -19,7 +19,7 @@
     <a href="{{ url_for('ver_notas') }}">ORDEN ALUMNOS</a>
       <a href="{{ url_for('form_add_alumnos') }}">AÑADIR ALUMNOS</a> 
       <a href="{{ url_for('form_del_alumnos') }}">ELIMINAR ALUMNOS</a>
-      <a href="">ACTUALIZAR NOTAS</a>
+      <a href="{{ url_for('form_update_notas') }}">ACTUALIZAR NOTAS</a>
     {% endif %}
   {% endif %}
 

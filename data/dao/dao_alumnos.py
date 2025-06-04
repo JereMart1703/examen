@@ -34,3 +34,14 @@ class DaoAlumnos:
         cursor.execute(sql, data)
         db.commit()
         cursor.close()
+
+
+################# ACTUALIZAR #################################
+
+    def update(self, db, nota1: int, nota2: int, nota3: int):
+        cursor = db.cursor()
+        sql = "UPDATE alumnos SET nota1 = %s, nota2 = %s, nota3 = %s WHERE id = %s"
+        data = (nota1, nota2,nota3, id)
+        cursor.execute(sql, data)
+        db.commit()
+        cursor.close()

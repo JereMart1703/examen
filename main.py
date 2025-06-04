@@ -5,8 +5,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 #### AÑADIR PARA QUE FUNCIONE LA BASE DE DATOS Y EL MENU
+### PONER DESDE EL PRINCIPIO Y T AHORRAS PROBLEMAS
 
-from httpx import request
 from data.modelo.menu import Menu
 from data.dao.dao_alumnos import DaoAlumnos
 from typing import Annotated
@@ -48,14 +48,14 @@ def get_alumnos(request: Request):
 @app.get("/vernotas")
 def ver_notas(request: Request):
     menu = Menu(True, True)
-    dao = DaoAlumnos()
-    alumnos = dao.get_all(database)
+    dao = DaoAlumnos() # SE PONE EL NOMBRE DEL CLASS DEL DAO_ALUMNOS.PY
+    alumnos = dao.get_all(database) #PONES EL NOMBRE DEL TEMA IGUALADO A DAO GET ALL DATABASE , SI TE PIDE HOSPITAL PUES HOSPITAL = , ALUMNOS , PUES ALUMNOS =
 
     return templates.TemplateResponse(
         request=request,
         name="vernotas.html",
         context={"menu": menu, "alumnos": alumnos}
-    )
+    ) # ESTO SE SIEMPRE LO MISMO MENOS EL NAME DEL HTML
 
 ############# AÑADIR ALUMNOS ###########################
 
@@ -109,5 +109,18 @@ def del_alumnos(request: Request, alumno_id: Annotated[int, Form()]):
     return templates.TemplateResponse(
         request=request,
         name="delalumnos.html",
+        context={"menu": menu, "alumnos": alumnos}
+    )
+
+############## ACTUALIZAR #########################
+
+@app.get("/formupdatenotas")
+def form_update_notas(request: Request):
+    dao = DaoAlumnos()
+    alumnos = dao.get_all(database)
+    menu = Menu(True, True)
+    return templates.TemplateResponse(
+        request=request,
+        name="formupdatenotas.html",
         context={"menu": menu, "alumnos": alumnos}
     )
